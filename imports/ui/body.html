@@ -5,13 +5,15 @@
     </header>
 
     <ul>
-      {{#each tasks}}
-        {{> task}}
-      {{/each}}
+      <!-- Not the way it's done in the tutorial -->
+      {{>task}}
     </ul>
   </div>
 </body>
 
 <template name="task">
-  <li>{{text}}</li>
+  {{#each tasks}}
+    <li>{{text}}</li>
+  {{/each}}
+
 </template>

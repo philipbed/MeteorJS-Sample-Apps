@@ -1,10 +1,11 @@
 import { Template } from 'meteor/templating';
+import { Tasks } from '../models/tasks.js';
 import './body.html';
 
-Template.body.helpers({
-  tasks: [
-    {text: 'This is the first task'},
-    {text: 'This is the second task'},
-    {text: 'This is the third task'}
-  ]
+
+// not the way it's done in th tutorial
+Template.task.helpers({
+  tasks() {
+    return Tasks.find({});
+  }
 })
