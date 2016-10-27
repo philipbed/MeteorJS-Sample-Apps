@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
-import ReactDOMi from 'react-dom';
+import ReactDOM from 'react-dom';
 import { Tasks } from '../api/tasks.js';
 
 import Task from './Task.jsx';
