@@ -8,6 +8,14 @@ import Task from './Task.jsx';
 // App component - represents the whole app
 class App extends Component {
 
+  constructor(props){
+    super(props);
+
+    this.state = {
+      hideCompleted: false,
+    };
+  }
+
   handleSubmit(event) {
     event.preventDefault();
 
@@ -23,8 +31,18 @@ class App extends Component {
     ReactDOM.findDOMNode(this.refs.textInput).value = '';
   }
 
+  toggleHideCompleted(){
+    this.setState({
+      hideCompleted: !this.state.hideCompleted,
+    });
+  }
+
   renderTasks() {
-    return this.props.tasks.map((task) => (
+    let filteredTasks = this.props.tasks;
+    if( this.state.hideCompleted ){
+      filteredTasks = filteredTasks.filter( (task) => !task.checked );
+    }
+    return filteredTasks.map( (task) => (
       <Task key={task._id} task={task} />
     ));
   }
@@ -33,6 +51,16 @@ class App extends Component {
     return (
       <div className="container">
         <header>
+          <h1>To Do List | You have {this.props.incompleteTaskCount} to do</h1>
+
+          <label className="hide-completed">
+            <input
+              type="checkbox"
+              readOnly
+              checked={this.state.hideCompleted}
+              onClick={this.toggleHideCompleted.bind(this)}/>
+              Hide Completed Tasks
+          </label>
           <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
               <input
                 type="text"
@@ -51,10 +79,12 @@ class App extends Component {
 
 App.propTypes = {
    tasks: PropTypes.array.isRequired,
+   incompleteTaskCount: PropTypes.number.isRequired,
  };
 
  export default createContainer(() => {
    return {
      tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
+     incompleteTaskCount: Tasks.find({checked: {$ne: true} }).count(),
    };
  }, App);
