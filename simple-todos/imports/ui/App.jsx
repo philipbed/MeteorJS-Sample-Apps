@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { Tasks } from '../api/tasks.js';
 
 import Task from './Task.jsx';
+import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 
 // App component - represents the whole app
 class App extends Component {
@@ -25,6 +26,8 @@ class App extends Component {
     Tasks.insert({
       text,
       createdAt: new Date(), // current time
+      owner: Meteor.userId(),
+      username: Meteor.user().username,
     });
 
     // Clear form
@@ -61,13 +64,18 @@ class App extends Component {
               onClick={this.toggleHideCompleted.bind(this)}/>
               Hide Completed Tasks
           </label>
-          <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
+
+          <AccountsUIWrapper/>
+
+          { this.props.currentUser ?
+            <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
               <input
                 type="text"
                 ref="textInput"
                 placeholder="Type to add new tasks"
               />
-          </form>
+            </form> : ''
+          }
         </header>
         <ul>
           {this.renderTasks()}
@@ -80,11 +88,13 @@ class App extends Component {
 App.propTypes = {
    tasks: PropTypes.array.isRequired,
    incompleteTaskCount: PropTypes.number.isRequired,
+   currentUser: PropTypes.object,
  };
 
  export default createContainer(() => {
    return {
      tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
      incompleteTaskCount: Tasks.find({checked: {$ne: true} }).count(),
+     currentUser: Meteor.user(),
    };
  }, App);
