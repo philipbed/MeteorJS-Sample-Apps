@@ -1,13 +1,18 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import SignUpButton from './SignUpButton.jsx';
+import {FlowRouter} from 'meteor/kadira:flow-router';
 export default class SignInForm extends Component{
 
   handleSubmit(event){
     event.preventDefault();
     let email = ReactDOM.findDOMNode(this.refs.username).value.trim();
     let pwd = ReactDOM.findDOMNode(this.refs.password).value.trim();
-    Meteor.call('signIn',email,pwd);
+    console.log("here");
+    Meteor.loginWithPassword(email,pwd,function(err,res){
+      FlowRouter.go('/app');
+    });
+
   }
 
   render(){

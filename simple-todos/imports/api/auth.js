@@ -7,13 +7,9 @@ Meteor.methods({
   'signUp'(email,pwd){
       Accounts.createUser({
         email:email,
-        password:password,
+        password:pwd,
       });
 
-      FlowRouter.go('/app');
   },
 
-  'signIn'(email,pwd){
-    this.loginWithPassword({username:email},pwd);
-  }
 });
