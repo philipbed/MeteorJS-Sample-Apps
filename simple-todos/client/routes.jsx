@@ -4,6 +4,8 @@ import { mount } from 'react-mounter';
 
 import {MainLayout} from '../imports/ui/MainLayout.jsx';
 import App from '../imports/ui/App.jsx';
+import SignUpForm from '../imports/ui/SignUpForm.jsx';
+import SignInForm from '../imports/ui/SignInForm.jsx';
 
 FlowRouter.route('/', {
 
@@ -11,6 +13,20 @@ FlowRouter.route('/', {
     mount(MainLayout);
     }
 
+});
+
+FlowRouter.route('/signUp',{
+
+  action(){
+    mount(SignUpForm);
+  }
+
+});
+
+FlowRouter.route('/signIn',{
+  action(){
+    mount(SignInForm);
+  }
 });
 
 FlowRouter.route('/app',{
