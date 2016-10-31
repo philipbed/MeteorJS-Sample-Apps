@@ -5,6 +5,7 @@ import {FlowRouter} from 'meteor/kadira:flow-router';
 
 Meteor.methods({
   'signUp'(email,pwd){
+      console.log("signing up");
       Accounts.createUser({
         email:email,
         password:pwd,

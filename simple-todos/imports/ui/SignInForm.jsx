@@ -9,8 +9,15 @@ export default class SignInForm extends Component{
     let email = ReactDOM.findDOMNode(this.refs.username).value.trim();
     let pwd = ReactDOM.findDOMNode(this.refs.password).value.trim();
     console.log("here");
-    Meteor.loginWithPassword(email,pwd,function(err,res){
-      FlowRouter.go('/app');
+    Meteor.loginWithPassword(email,pwd,function(err){
+      if(!err){
+        FlowRouter.go('/app');
+      }
+      else{
+        console.log("error");
+        throw new Meteor.Error("Invalid login: "+err);
+        return false;
+      }
     });
 
   }

@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import {FlowRouter} from 'meteor/kadira:flow-router';
+import { Meteor } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base';
 
 export default class SignUpForm extends Component{
 
@@ -7,7 +10,21 @@ export default class SignUpForm extends Component{
     event.preventDefault();
     let email = ReactDOM.findDOMNode(this.refs.username).value.trim();
     let pwd = ReactDOM.findDOMNode(this.refs.password).value.trim();
-    Meteor.call('signUp',email,pwd);
+    let userObject = {
+      email: email,
+      password: pwd
+    };
+
+    Accounts.createUser(userObject,function(err){
+      if(err){
+        console.log(err.reason);
+      }
+      else{
+        FlowRouter.go('/app');
+      }
+    });
+
+    // FlowRouter.go('/app');
   }
   render(){
     return (
