@@ -2,6 +2,38 @@ import React, { Component, PropTypes } from 'react';
 import { Tasks } from '../api/tasks.js';
 // Task component - represents a single todo item
 export default class Task extends Component {
+    constructor(props){
+      super(props);
+      this.state = {editable:false};
+    }
+
+    taskItem() {
+      const taskClassName = this.props.task.checked ? "checked": "";
+      return ( <li className={taskClassName}>
+                <span className="edit" onClick={ this.toggleEdit.bind( this ) }>&#9998;</span>
+                <button className="delete" onClick={ this.deleteTask.bind( this) }>&times;</button>
+
+                <input
+                  type="checkbox"
+                  readOnly
+                  checked={this.props.task.checked}
+                  onClick={this.toggleChecked.bind(this)} />
+
+                <span className="text">{Meteor.users.findOne(Meteor.userId()).emails[0].address}</span> : {this.props.task.text}
+              </li>);
+    }
+    makeTaskeditable(){
+      const taskClassName = this.props.task.checked ? "checked": "";
+      return (<li className={taskClassName}>
+
+          <input onChange type="text" className="text" value={this.props.task.text}/>
+          <button role="submit" className="save">Submit</button>
+
+          <button role="button" className="cancel" onClick={ this.toggleEdit.bind(this) }>Cancel</button>
+        </li>);
+    }
+
+
    toggleChecked() {
       Meteor.call('tasks.setChecked', this.props.task._id,!this.props.task.checked)
 
@@ -12,23 +44,22 @@ export default class Task extends Component {
 
   }
 
+  toggleEdit(event){
+    event.preventDefault();
+    this.setState({editable:!this.state.editable});
+  }
+
   render() {
     console.log(Meteor.userId());
-    const taskClassName = this.props.task.checked ? "checked": "";
+    let component;
+    if(this.state.editable){
+      component = this.makeTaskeditable();
+    }
+    else{
+      component = this.taskItem();
+    }
+    return component;
 
-    return (
-      <li className={taskClassName}>
-        <button className="delete" onClick={ this.deleteTask.bind( this) }>&times;</button>
-
-        <input
-          type="checkbox"
-          readOnly
-          checked={this.props.task.checked}
-          onClick={this.toggleChecked.bind(this)} />
-
-        <span className="text">{Meteor.users.findOne(Meteor.userId()).emails[0].address}</span> : {this.props.task.text}
-      </li>
-    );
   }
 }
 

@@ -78,6 +78,38 @@ ul {
   position: relative;
 }
 
+.edit {
+  color: black;
+  font-weight: bold;
+  font-size: 1.25em;
+}
+
+.save{
+  margin-left: 20px;
+  border-radius: 5px;
+  background: #315481;
+  font-weight: bold;
+  font-size: 15px;
+  border: none;
+  height: 30px;
+  color: #fff;
+}
+
+.cancel{
+  margin-left: 25px;
+  border-radius: 5px;
+  background: #803142;
+  font-weight: bold;
+  font-size: 15px;
+  border: none;
+  height: 30px;
+  color: #fff;
+}
+
+.cancel, .save,.edit, .delete{
+  cursor: pointer;
+}
+
 li {
   position: relative;
   list-style: none;
