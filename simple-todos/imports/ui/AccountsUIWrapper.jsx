@@ -15,8 +15,17 @@ export default class AccountsUIWrapper extends Component {
     }
   }
 
+  logout(){
+    Meteor.logout(function(){
+       FlowRouter.go('/');
+    });
+  }
+
   render() {
     // Just render a placeholder container that will be filled in
-    return <span ref="container">{this.getEmail()}</span>;
+    return (<div>
+              <span ref="container">{this.getEmail()}</span>
+              <button className="logout-button" onClick={this.logout.bind(this)}>Logout</button>
+            </div>);
   }
 }

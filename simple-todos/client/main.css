@@ -70,10 +70,9 @@ ul {
 }
 
 .delete {
-  float: right;
   font-weight: bold;
   background: none;
-  font-size: 1em;
+  font-size: 1.5em;
   border: none;
   position: relative;
 }
@@ -81,7 +80,19 @@ ul {
 .edit {
   color: black;
   font-weight: bold;
-  font-size: 1.25em;
+  font-size: 1.5em;
+
+  position: relative;
+  margin-right: 0px;
+  background: none;
+  border: none;
+}
+
+.wrapper{
+  display: flex;
+  flex-flow: row wrap;
+  float: right;
+  overflow: auto;
 }
 
 .save{
@@ -134,8 +145,18 @@ li.private {
   border-color: #ddd;
 }
 
-header .hide-completed {
+header .hide-completed, .logout-button {
   float: right;
+}
+
+.logout-button{
+  border:none;
+  background-color:  #817831;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 15px;
+  height: 30px;
+  color: #fff;
 }
 
 .toggle-private {

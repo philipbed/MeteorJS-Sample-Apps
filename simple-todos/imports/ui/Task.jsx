@@ -4,15 +4,16 @@ import { Tasks } from '../api/tasks.js';
 export default class Task extends Component {
     constructor(props){
       super(props);
-      this.state = {editable:false};
+      this.state = {editable:false, text:props.task.text};
     }
 
     taskItem() {
       const taskClassName = this.props.task.checked ? "checked": "";
       return ( <li className={taskClassName}>
-                <span className="edit" onClick={ this.toggleEdit.bind( this ) }>&#9998;</span>
-                <button className="delete" onClick={ this.deleteTask.bind( this) }>&times;</button>
-
+                <div className="wrapper">
+                  <button className="edit" onClick={ this.toggleEdit.bind( this ) }>&#9998;</button>
+                  <button className="delete" onClick={ this.deleteTask.bind( this) }>&times;</button>
+                </div>
                 <input
                   type="checkbox"
                   readOnly
@@ -22,15 +23,20 @@ export default class Task extends Component {
                 <span className="text">{Meteor.users.findOne(Meteor.userId()).emails[0].address}</span> : {this.props.task.text}
               </li>);
     }
+
     makeTaskeditable(){
       const taskClassName = this.props.task.checked ? "checked": "";
       return (<li className={taskClassName}>
 
-          <input onChange type="text" className="text" value={this.props.task.text}/>
-          <button role="submit" className="save">Submit</button>
+          <input onChange={this.handleChange.bind(this)} type="text" className="text" value={this.state.text}/>
+          <button role="submit" className="save" onClick={ this.editTask.bind(this) }>Submit</button>
 
           <button role="button" className="cancel" onClick={ this.toggleEdit.bind(this) }>Cancel</button>
         </li>);
+    }
+
+    handleChange(event){
+      this.setState({text:event.target.value});
     }
 
 
@@ -49,8 +55,19 @@ export default class Task extends Component {
     this.setState({editable:!this.state.editable});
   }
 
+  editTask(event){
+    event.preventDefault();
+    let text = $(".text").val().trim();
+    Meteor.call('tasks.edit',this.props.task._id, text,function( err, res ){
+      if(err){
+        console.log(err.reason);
+      }
+    });
+
+    this.toggleEdit(event);
+  }
+
   render() {
-    console.log(Meteor.userId());
     let component;
     if(this.state.editable){
       component = this.makeTaskeditable();
