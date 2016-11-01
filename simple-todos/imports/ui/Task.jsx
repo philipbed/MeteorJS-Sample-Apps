@@ -13,7 +13,7 @@ export default class Task extends Component {
   }
 
   render() {
-
+    console.log(Meteor.userId());
     const taskClassName = this.props.task.checked ? "checked": "";
 
     return (
@@ -26,7 +26,7 @@ export default class Task extends Component {
           checked={this.props.task.checked}
           onClick={this.toggleChecked.bind(this)} />
 
-        <span className="text">{this.props.task.username}</span> : {this.props.task.text}
+        <span className="text">{Meteor.users.findOne(Meteor.userId()).emails[0].address}</span> : {this.props.task.text}
       </li>
     );
   }
