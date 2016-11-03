@@ -16,7 +16,7 @@ export class MainLayout extends Component{
     return (
       <div>
         <h1>This is the Home page</h1>
-        <button onClick={this.goToApp.bind(this)}>App</button>
+        {/* <button  onClick={this.goToApp.bind(this)}>App</button> */}
         <br/>
         <SignInButton/>
       </div>

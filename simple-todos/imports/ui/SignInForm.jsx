@@ -8,12 +8,9 @@ export default class SignInForm extends Component{
     event.preventDefault();
     let email = ReactDOM.findDOMNode(this.refs.username).value.trim();
     let pwd = ReactDOM.findDOMNode(this.refs.password).value.trim();
-    
+
     Meteor.loginWithPassword(email,pwd,function(err){
-      if(!err){
-        FlowRouter.go('/app');
-      }
-      else{
+      if(err){
         console.log(err.reason);
         return false;
       }
@@ -23,24 +20,32 @@ export default class SignInForm extends Component{
 
   render(){
     return (
-      <div>
-        <form className="signInForm" onSubmit={this.handleSubmit.bind(this)}>
-          <input
-            type="text"
-            ref="username"
-            placeholder="Username"
-          /><br/>
-          <input
-            type="password"
-            ref="password"
-            placeholder="Password"
-          /><br/>
-          <input
-            type="submit"
-            ref="regButton"
-            value="Login"
-          />
-        </form>
+      <div className="container">
+        <div className="row">
+            <div className="col-md-6 col-md-offset-3"></div>
+            <form className="signInForm" onSubmit={this.handleSubmit.bind(this)}>
+              <div className="form-group ">
+                <label htmlFor="email">Email:</label>
+                <input
+                  id="email"
+                  className="input-medium col-sm-offset-1"
+                  type="email"
+                  ref="username"
+                  placeholder="Username"
+                />
+              </div>
+              <div className="form-group">
+                <label>Password:</label>
+                <input
+                  className="input-medium"
+                  type="password"
+                  ref="password"
+                  placeholder="Password"
+                />
+
+              </div>
+                <button type="submit" ref="regButton" className="btn">Login</button>
+            </form>
 
         <h3>
           Need to create and Account? <SignUpButton/>

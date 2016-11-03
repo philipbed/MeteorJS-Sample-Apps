@@ -36,3 +36,7 @@ FlowRouter.route('/app',{
   }
 
 });
+
+Accounts.onLogin(function(){
+   FlowRouter.go('/app');
+});
