@@ -36,7 +36,7 @@ export default class SignInForm extends Component{
                       className="input-sm col-md-offset-1"
                       type="email"
                       ref="username"
-                      placeholder="Username"
+                      placeholder="Email"
                     />
                   </div>
                   <div className="form-group">

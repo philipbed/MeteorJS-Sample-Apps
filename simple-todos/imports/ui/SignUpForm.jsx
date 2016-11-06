@@ -31,13 +31,13 @@ export default class SignUpForm extends Component{
       <div className="text-center">
         <form className="signUpForm" onSubmit={this.handleSubmit.bind(this)}>
           <input
-            type="text"
+            type="email"
             ref="username"
             className="input-sm"
-            placeholder="Username"
+            placeholder="Email"
           /><br/>
           <input
-            type="text"
+            type="password"
             ref="password"
             className="input-sm"
             placeholder="Password"
