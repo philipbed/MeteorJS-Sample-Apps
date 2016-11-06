@@ -70,12 +70,55 @@ ul {
 }
 
 .delete {
-  float: right;
   font-weight: bold;
   background: none;
-  font-size: 1em;
+  font-size: 1.5em;
   border: none;
   position: relative;
+}
+
+.edit {
+  color: black;
+  font-weight: bold;
+  font-size: 1.5em;
+
+  position: relative;
+  margin-right: 0px;
+  background: none;
+  border: none;
+}
+
+.wrapper{
+  display: flex;
+  flex-flow: row wrap;
+  float: right;
+  overflow: auto;
+}
+
+.save{
+  margin-left: 20px;
+  border-radius: 5px;
+  background: #315481;
+  font-weight: bold;
+  font-size: 15px;
+  border: none;
+  height: 30px;
+  color: #fff;
+}
+
+.cancel{
+  margin-left: 25px;
+  border-radius: 5px;
+  background: #803142;
+  font-weight: bold;
+  font-size: 15px;
+  border: none;
+  height: 30px;
+  color: #fff;
+}
+
+.cancel, .save,.edit, .delete{
+  cursor: pointer;
 }
 
 li {
@@ -102,8 +145,18 @@ li.private {
   border-color: #ddd;
 }
 
-header .hide-completed {
+header .hide-completed, .logout-button {
   float: right;
+}
+
+.logout-button{
+  border:none;
+  background-color:  #817831;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 15px;
+  height: 30px;
+  color: #fff;
 }
 
 .toggle-private {

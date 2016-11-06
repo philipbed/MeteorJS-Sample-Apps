@@ -4,17 +4,28 @@ import { Template } from 'meteor/templating';
 import { Blaze } from 'meteor/blaze';
 
 export default class AccountsUIWrapper extends Component {
-  componentDidMount() {
-    // Use Meteor Blaze to render login buttons
-    this.view = Blaze.render(Template.loginButtons,
-      ReactDOM.findDOMNode(this.refs.container));
+
+  getEmail(){
+    if (Meteor.user()){
+      console.log("here");
+      return Meteor.user().emails[0].address;
+    }
+    else{
+      return "Not Logged in";
+    }
   }
-  componentWillUnmount() {
-    // Clean up Blaze view
-    Blaze.remove(this.view);
+
+  logout(){
+    Meteor.logout(function(){
+       FlowRouter.go('/');
+    });
   }
+
   render() {
     // Just render a placeholder container that will be filled in
-    return <span ref="container" />;
+    return (<div>
+              <span ref="container">{this.getEmail()}</span>
+              <button className="logout-button" onClick={this.logout.bind(this)}>Logout</button>
+            </div>);
   }
 }

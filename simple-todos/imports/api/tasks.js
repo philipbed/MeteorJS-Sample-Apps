@@ -39,6 +39,12 @@ Meteor.methods({
     check(setChecked,Boolean);
 
     Tasks.update(taskId, { $set : {checked: setChecked } } );
-  }
+  },
+
+  'tasks.edit'(taskId,newText){
+    check(taskId,String);
+
+    Tasks.update( taskId, {$set: { text: newText } } );
+  },
 
 });

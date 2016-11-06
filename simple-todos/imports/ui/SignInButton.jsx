@@ -8,7 +8,7 @@ export default class SignInButton extends Component{
   }
   render(){
     return(
-      <button onClick={this.handleClick.bind(this)}>Sign In Here</button>
+      <button className="btn btn-primary" onClick={this.handleClick.bind(this)}>Sign In Here</button>
     );
   }
 
