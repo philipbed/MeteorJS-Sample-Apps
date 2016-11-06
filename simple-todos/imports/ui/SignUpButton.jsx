@@ -7,7 +7,7 @@ export default class SignUpButton extends Component{
   }
   render(){
     return(
-      <button onClick={this.handleClick.bind(this)}>Sign Up Here</button>
+      <button id="signUp" className="btn secondary-button bump-left" onClick={this.handleClick.bind(this)}>Sign Up Here</button>
     );
   }
 

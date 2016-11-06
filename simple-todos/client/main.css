@@ -1,5 +1,5 @@
 /* CSS declarations go here */
-body {
+body{
   font-family: sans-serif;
   background-color: #315481;
   background-image: linear-gradient(to bottom, #315481, #918e82 100%);
@@ -16,12 +16,21 @@ body {
 
   font-size: 14px;
 }
+div#containerDiv.container{
+
+    background-color: #315481;
+    background-image: linear-gradient(to bottom, #315481, #918e82 100%);
+    background-attachment: fixed;
+}
 
 .container {
-  max-width: 600px;
-  margin: 0 auto;
-  min-height: 100%;
-  background: white;
+    max-width: 600px;
+    margin: 0 auto;
+    min-height: 100%;
+
+    background-color: #315481;
+    background-image: linear-gradient(to bottom, #315481, #918e82 100%);
+    background-attachment: fixed;
 }
 
 header {
@@ -96,16 +105,42 @@ ul {
 }
 
 .save{
-  margin-left: 20px;
-  border-radius: 5px;
-  background: #315481;
-  font-weight: bold;
-  font-size: 15px;
-  border: none;
-  height: 30px;
-  color: #fff;
+    margin-left: 20px;
+    border-radius: 5px;
+    background: #315481;
+    font-weight: bold;
+    font-size: 15px;
+    border: none;
+    height: 30px;
+    color: #fff;
 }
 
+#email.col-md-offset-1 {
+    margin-left: 11%;
+}
+
+.primary-button, .secondary-button, .cancel-button{
+    background: #315481;
+    color: #fff;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#buttonContainer.container{
+    padding-left: 0;
+}
+
+.bump-left{
+    margin-left: 15px;
+}
+
+.secondary-button{
+    background-color:  #817831;
+}
+
+.cancel-button{
+    background: #803142;
+}
 .cancel{
   margin-left: 25px;
   border-radius: 5px;

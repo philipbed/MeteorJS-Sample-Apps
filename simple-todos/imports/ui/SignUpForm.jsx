@@ -28,23 +28,33 @@ export default class SignUpForm extends Component{
   }
   render(){
     return (
-      <div>
+      <div className="text-center">
         <form className="signUpForm" onSubmit={this.handleSubmit.bind(this)}>
           <input
             type="text"
             ref="username"
+            className="input-sm"
             placeholder="Username"
           /><br/>
           <input
             type="text"
             ref="password"
+            className="input-sm"
             placeholder="Password"
           /><br/>
-          <input
+          <button
             type="submit"
             ref="regButton"
-            value="Register"
-          />
+            className="btn primary-button"
+          >
+              Register
+          </button>
+          <a
+            href="/"
+            className="btn cancel-button"
+          >
+          Cancel
+          </a>
         </form>
       </div>
     );

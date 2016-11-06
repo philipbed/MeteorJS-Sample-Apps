@@ -20,15 +20,20 @@ export default class SignInForm extends Component{
 
   render(){
     return (
-      <div className="container">
+      <div id="containerDiv" className="container">
           <div className="row">
+            <div className="text-center">
+              <h3>
+                Need to create and Account?
+              </h3>
+              </div>
               <div className="col-md-6 col-md-offset-3">
                 <form className="signInForm" onSubmit={this.handleSubmit.bind(this)}>
                   <div className="form-group ">
                     <label htmlFor="email">Email:</label>
                     <input
                       id="email"
-                      className="input-medium col-sm-offset-1"
+                      className="input-sm col-md-offset-1"
                       type="email"
                       ref="username"
                       placeholder="Username"
@@ -37,20 +42,23 @@ export default class SignInForm extends Component{
                   <div className="form-group">
                     <label>Password:</label>
                     <input
-                      className="input-medium"
+                      className="input-sm"
                       type="password"
                       ref="password"
                       placeholder="Password"
                     />
 
                   </div>
-                    <button type="submit" ref="regButton" className="btn">Login</button>
+                    <div  id="buttonContainer" className="container">
+                        <button type="submit" ref="regButton" className="btn primary-button">Login</button>
+                        <SignUpButton/>
+                        <a href="/" className="btn cancel-button bump-left">Cancel</a>
+                    </div>
                 </form>
               </div>
-          <h3>
-            Need to create and Account? <SignUpButton/>
-          </h3>
+
         </div>
+
       </div>
     );
   }
