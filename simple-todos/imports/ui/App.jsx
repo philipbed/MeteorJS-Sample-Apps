@@ -6,7 +6,9 @@ import { Tasks } from '../api/tasks.js';
 import Task from './Task.jsx';
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 
-// App component - represents the whole app
+/**
+ * Represents the Component pertaining t
+ */
 class App extends Component {
 
   constructor(props){
