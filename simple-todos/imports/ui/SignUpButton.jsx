@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {FlowRouter} from 'meteor/kadira:flow-router';
+
 export default class SignUpButton extends Component{
   handleClick(event){
     event.preventDefault();
-    FlowRouter.go('/signUp');
+    Router.go('/signUp');
   }
   render(){
     return(

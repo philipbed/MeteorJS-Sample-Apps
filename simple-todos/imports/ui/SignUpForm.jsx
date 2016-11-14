@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import {FlowRouter} from 'meteor/kadira:flow-router';
+
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 
@@ -20,11 +20,11 @@ export default class SignUpForm extends Component{
         console.log(err.reason);
       }
       else{
-        FlowRouter.go('/app');
+        Router.go('/app');
       }
     });
 
-    // FlowRouter.go('/app');
+
   }
   render(){
     return (
