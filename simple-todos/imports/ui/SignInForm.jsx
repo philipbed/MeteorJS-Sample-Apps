@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import SignUpButton from './SignUpButton.jsx';
-import {FlowRouter} from 'meteor/kadira:flow-router';
+
 export default class SignInForm extends Component{
 
   handleSubmit(event){
