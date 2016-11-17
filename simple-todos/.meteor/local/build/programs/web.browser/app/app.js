@@ -1,105 +1,4 @@
-var require = meteorInstall({"client":{"template.main.js":function(){
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//                                                                                                           //
-// client/template.main.js                                                                                   //
-//                                                                                                           //
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                                                                                             //
-                                                                                                             // 1
-Template.body.addContent((function() {                                                                       // 2
-  var view = this;                                                                                           // 3
-  return HTML.Raw('<div id="render-target"></div>');                                                         // 4
-}));                                                                                                         // 5
-Meteor.startup(Template.body.renderToDocument);                                                              // 6
-                                                                                                             // 7
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-},"routes.jsx":["react","meteor/kadira:flow-router","react-mounter","../imports/ui/MainLayout.jsx","../imports/ui/App.jsx","../imports/ui/SignUpForm.jsx","../imports/ui/SignInForm.jsx",function(require,exports,module){
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//                                                                                                           //
-// client/routes.jsx                                                                                         //
-//                                                                                                           //
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                                                                                             //
-var React;module.import('react',{"default":function(v){React=v}});var FlowRouter;module.import('meteor/kadira:flow-router',{"FlowRouter":function(v){FlowRouter=v}});var mount;module.import('react-mounter',{"mount":function(v){mount=v}});var MainLayout;module.import('../imports/ui/MainLayout.jsx',{"MainLayout":function(v){MainLayout=v}});var App;module.import('../imports/ui/App.jsx',{"default":function(v){App=v}});var SignUpForm;module.import('../imports/ui/SignUpForm.jsx',{"default":function(v){SignUpForm=v}});var SignInForm;module.import('../imports/ui/SignInForm.jsx',{"default":function(v){SignInForm=v}});
-                                                                                                             // 2
-                                                                                                             // 3
-                                                                                                             //
-                                                                                                             // 5
-                                                                                                             // 6
-                                                                                                             // 7
-                                                                                                             // 8
-                                                                                                             //
-FlowRouter.route('/', {                                                                                      // 10
-  action: function () {                                                                                      // 12
-    function action() {                                                                                      // 10
-      mount(MainLayout);                                                                                     // 13
-    }                                                                                                        // 14
-                                                                                                             //
-    return action;                                                                                           // 10
-  }()                                                                                                        // 10
-});                                                                                                          // 10
-                                                                                                             //
-FlowRouter.route('/signUp', {                                                                                // 18
-  action: function () {                                                                                      // 20
-    function action() {                                                                                      // 18
-      mount(SignUpForm);                                                                                     // 21
-    }                                                                                                        // 22
-                                                                                                             //
-    return action;                                                                                           // 18
-  }()                                                                                                        // 18
-});                                                                                                          // 18
-                                                                                                             //
-FlowRouter.route('/signIn', {                                                                                // 26
-  action: function () {                                                                                      // 27
-    function action() {                                                                                      // 26
-      mount(SignInForm);                                                                                     // 28
-    }                                                                                                        // 29
-                                                                                                             //
-    return action;                                                                                           // 26
-  }()                                                                                                        // 26
-});                                                                                                          // 26
-                                                                                                             //
-FlowRouter.route('/app', {                                                                                   // 32
-  action: function () {                                                                                      // 34
-    function action() {                                                                                      // 32
-      mount(App);                                                                                            // 35
-    }                                                                                                        // 36
-                                                                                                             //
-    return action;                                                                                           // 32
-  }()                                                                                                        // 32
-});                                                                                                          // 32
-                                                                                                             //
-Accounts.onLogin(function () {                                                                               // 40
-  FlowRouter.go('/app');                                                                                     // 41
-});                                                                                                          // 42
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-}],"main.jsx":["react","meteor/meteor","react-dom","../imports/ui/App.jsx","../imports/startup/accounts-config.js",function(require,exports,module){
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//                                                                                                           //
-// client/main.jsx                                                                                           //
-//                                                                                                           //
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                                                                                             //
-var React;module.import('react',{"default":function(v){React=v}});var Meteor;module.import('meteor/meteor',{"Meteor":function(v){Meteor=v}});var render;module.import('react-dom',{"render":function(v){render=v}});var App;module.import('../imports/ui/App.jsx',{"default":function(v){App=v}});module.import('../imports/startup/accounts-config.js');
-                                                                                                             // 2
-                                                                                                             // 3
-                                                                                                             //
-                                                                                                             // 5
-                                                                                                             // 6
-                                                                                                             //
-Meteor.startup(function () {                                                                                 // 8
-                                                                                                             //
-  //render(<App />, document.getElementById('render-target'));                                               // 10
-                                                                                                             //
-});                                                                                                          // 12
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-}]},"imports":{"api":{"tasks.js":["meteor/meteor","meteor/mongo","meteor/check",function(require,exports,module){
+var require = meteorInstall({"imports":{"api":{"tasks.js":["meteor/meteor","meteor/mongo","meteor/check",function(require,exports,module){
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                           //
@@ -113,64 +12,94 @@ module.export({Tasks:function(){return Tasks}});var Meteor;module.import('meteor
                                                                                                              //
 var Tasks = new Mongo.Collection('tasks');                                                                   // 5
                                                                                                              //
-if (Meteor.isServer) {                                                                                       // 7
-  Meteor.publish('tasks', function () {                                                                      // 8
-    function publishTasks() {                                                                                // 8
-      return Tasks.find();                                                                                   // 9
-    }                                                                                                        // 10
+// This code block only gets run if this file is imported/ran on the server.                                 // 7
+if (Meteor.isServer) {                                                                                       // 8
+  Meteor.publish('tasks', function () {                                                                      // 9
+    function publishTasks() {                                                                                // 9
+      return Tasks.find();                                                                                   // 10
+    }                                                                                                        // 11
                                                                                                              //
-    return publishTasks;                                                                                     // 8
-  }());                                                                                                      // 8
-}                                                                                                            // 11
+    return publishTasks;                                                                                     // 9
+  }());                                                                                                      // 9
+}                                                                                                            // 12
                                                                                                              //
-// Start meteor methods - like controllers                                                                   // 14
-Meteor.methods({                                                                                             // 15
-  'tasks.insert': function () {                                                                              // 16
-    function tasksInsert(text) {                                                                             // 15
-      check(text, String);                                                                                   // 17
+// Start meteor methods - like controllers                                                                   // 15
+Meteor.methods({                                                                                             // 16
+  /**                                                                                                        // 17
+   * Insert a task document into the Task collection                                                         //
+   * @param text - The text of the new task                                                                  //
+   */                                                                                                        //
+  'tasks.insert': function () {                                                                              // 21
+    function tasksInsert(text) {                                                                             // 16
                                                                                                              //
-      if (!this.userId) {                                                                                    // 19
-        throw new Meteor.Error("not-authorized");                                                            // 20
-      }                                                                                                      // 21
+      // Throw an error if the user is not logged in                                                         // 23
+      if (!this.userId) {                                                                                    // 24
+        throw new Meteor.Error("not-authorized");                                                            // 25
+      }                                                                                                      // 26
+      // Validate that text is a string                                                                      // 27
+      check(text, String);                                                                                   // 28
+      // Insert a new task                                                                                   // 29
+      Tasks.insert({                                                                                         // 30
+        text: text,                                                                                          // 31
+        createdAt: new Date(),                                                                               // 32
+        owner: this.userId,                                                                                  // 33
+        username: Meteor.users.findOne(this.userId).username                                                 // 34
+      });                                                                                                    // 30
+    }                                                                                                        // 36
                                                                                                              //
-      Tasks.insert({                                                                                         // 23
-        text: text,                                                                                          // 24
-        createdAt: new Date(),                                                                               // 25
-        owner: this.userId,                                                                                  // 26
-        username: Meteor.users.findOne(this.userId).username                                                 // 27
-      });                                                                                                    // 23
-    }                                                                                                        // 29
+    return tasksInsert;                                                                                      // 16
+  }(),                                                                                                       // 16
                                                                                                              //
-    return tasksInsert;                                                                                      // 15
-  }(),                                                                                                       // 15
-  'tasks.remove': function () {                                                                              // 31
-    function tasksRemove(taskId) {                                                                           // 15
-      check(taskId, String);                                                                                 // 32
-      Tasks.remove(taskId);                                                                                  // 33
-    }                                                                                                        // 35
                                                                                                              //
-    return tasksRemove;                                                                                      // 15
-  }(),                                                                                                       // 15
-  'tasks.setChecked': function () {                                                                          // 37
-    function tasksSetChecked(taskId, setChecked) {                                                           // 15
-      check(taskId, String);                                                                                 // 38
-      check(setChecked, Boolean);                                                                            // 39
+  /**                                                                                                        // 38
+   * Remove a task document from the Tasks collection                                                        //
+   * @param taskId - the ID of the Task to remove                                                            //
+   */                                                                                                        //
+  'tasks.remove': function () {                                                                              // 42
+    function tasksRemove(taskId) {                                                                           // 16
+      check(taskId, String);                                                                                 // 43
+      Tasks.remove(taskId);                                                                                  // 44
+    }                                                                                                        // 46
                                                                                                              //
-      Tasks.update(taskId, { $set: { checked: setChecked } });                                               // 41
-    }                                                                                                        // 42
+    return tasksRemove;                                                                                      // 16
+  }(),                                                                                                       // 16
                                                                                                              //
-    return tasksSetChecked;                                                                                  // 15
-  }(),                                                                                                       // 15
-  'tasks.edit': function () {                                                                                // 44
-    function tasksEdit(taskId, newText) {                                                                    // 15
-      check(taskId, String);                                                                                 // 45
                                                                                                              //
-      Tasks.update(taskId, { $set: { text: newText } });                                                     // 47
-    }                                                                                                        // 48
+  /**                                                                                                        // 48
+   * Set the checked attribute of a task                                                                     //
+   * @param taskId - the ID of the Task                                                                      //
+   * @param setChecked - a boolean that represents completion                                                //
+   */                                                                                                        //
+  'tasks.setChecked': function () {                                                                          // 53
+    function tasksSetChecked(taskId, setChecked) {                                                           // 16
+      check(taskId, String);                                                                                 // 54
+      check(setChecked, Boolean);                                                                            // 55
                                                                                                              //
-    return tasksEdit;                                                                                        // 15
-  }()                                                                                                        // 15
-});                                                                                                          // 15
+      // use the $set keyword(MongoDB keyword) because it allows the document                                // 57
+      // to be updated with that new field and not have the entire document                                  // 58
+      // replaced with a document with a new field.                                                          // 59
+      Tasks.update(taskId, { $set: { checked: setChecked } });                                               // 60
+    }                                                                                                        // 61
+                                                                                                             //
+    return tasksSetChecked;                                                                                  // 16
+  }(),                                                                                                       // 16
+                                                                                                             //
+                                                                                                             //
+  /**                                                                                                        // 63
+   * Edit the text of an existing task                                                                       //
+   * @param taskId - The ID of the task                                                                      //
+   * @param newText - The updated text                                                                       //
+   */                                                                                                        //
+  'tasks.edit': function () {                                                                                // 68
+    function tasksEdit(taskId, newText) {                                                                    // 16
+      check(taskId, String);                                                                                 // 69
+                                                                                                             //
+      Tasks.update(taskId, { $set: { text: newText } });                                                     // 71
+    }                                                                                                        // 72
+                                                                                                             //
+    return tasksEdit;                                                                                        // 16
+  }()                                                                                                        // 16
+});                                                                                                          // 16
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }]},"startup":{"accounts-config.js":["meteor/accounts-base",function(require,exports,module){
@@ -183,9 +112,10 @@ Meteor.methods({                                                                
                                                                                                              //
 var Accounts;module.import('meteor/accounts-base',{"Accounts":function(v){Accounts=v}});                     // 1
                                                                                                              //
-Accounts.ui.config({                                                                                         // 3
-  passwordSignupFields: 'USERNAME_ONLY'                                                                      // 4
-});                                                                                                          // 3
+// useful if using the accounts-ui setup. Not used in this application                                       // 3
+Accounts.ui.config({                                                                                         // 4
+  passwordSignupFields: 'USERNAME_ONLY'                                                                      // 5
+});                                                                                                          // 4
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }]},"ui":{"AccountsUIWrapper.jsx":["babel-runtime/helpers/classCallCheck","babel-runtime/helpers/possibleConstructorReturn","babel-runtime/helpers/inherits","react","react-dom","meteor/templating","meteor/blaze",function(require,exports,module){
@@ -204,61 +134,81 @@ var _classCallCheck;module.import('babel-runtime/helpers/classCallCheck',{"defau
                                                                                                              // 3
                                                                                                              // 4
                                                                                                              //
+/**                                                                                                          // 6
+ * React Component for the AccountsUI display. Customized it for my own use                                  //
+ */                                                                                                          //
+                                                                                                             //
 var AccountsUIWrapper = function (_Component) {                                                              //
-  _inherits(AccountsUIWrapper, _Component);                                                                  //
+    _inherits(AccountsUIWrapper, _Component);                                                                //
                                                                                                              //
-  function AccountsUIWrapper() {                                                                             //
-    _classCallCheck(this, AccountsUIWrapper);                                                                //
+    function AccountsUIWrapper() {                                                                           //
+        _classCallCheck(this, AccountsUIWrapper);                                                            //
                                                                                                              //
-    return _possibleConstructorReturn(this, _Component.apply(this, arguments));                              //
-  }                                                                                                          //
+        return _possibleConstructorReturn(this, _Component.apply(this, arguments));                          //
+    }                                                                                                        //
                                                                                                              //
-  AccountsUIWrapper.prototype.getEmail = function () {                                                       //
-    function getEmail() {                                                                                    //
-      if (Meteor.user()) {                                                                                   // 9
-        console.log("here");                                                                                 // 10
-        return Meteor.user().emails[0].address;                                                              // 11
-      } else {                                                                                               // 12
-        return "Not Logged in";                                                                              // 14
-      }                                                                                                      // 15
-    }                                                                                                        // 16
+    /**                                                                                                      // 11
+     * Retrieve the current user's email address.                                                            //
+     * @returns {String} - The user's email address or not Logged in if the user isn't                       //
+     *             logged in.                                                                                //
+     */                                                                                                      //
+    AccountsUIWrapper.prototype.getEmail = function () {                                                     //
+        function getEmail() {                                                                                //
+            if (Meteor.user()) {                                                                             // 17
+                console.log("here");                                                                         // 18
+                return Meteor.user().emails[0].address;                                                      // 19
+            } else {                                                                                         // 20
+                return "Not Logged in";                                                                      // 22
+            }                                                                                                // 23
+        }                                                                                                    // 24
                                                                                                              //
-    return getEmail;                                                                                         //
-  }();                                                                                                       //
+        return getEmail;                                                                                     //
+    }();                                                                                                     //
                                                                                                              //
-  AccountsUIWrapper.prototype.logout = function () {                                                         //
-    function logout() {                                                                                      //
-      Meteor.logout(function () {                                                                            // 19
-        FlowRouter.go('/');                                                                                  // 20
-      });                                                                                                    // 21
-    }                                                                                                        // 22
+    /**                                                                                                      // 26
+     * Logout method for the button. Route to the home route on success.                                     //
+     */                                                                                                      //
                                                                                                              //
-    return logout;                                                                                           //
-  }();                                                                                                       //
                                                                                                              //
-  AccountsUIWrapper.prototype.render = function () {                                                         //
-    function render() {                                                                                      //
-      // Just render a placeholder container that will be filled in                                          // 25
-      return React.createElement(                                                                            // 26
-        'div',                                                                                               // 26
-        null,                                                                                                // 26
-        React.createElement(                                                                                 // 27
-          'span',                                                                                            // 27
-          { ref: 'container' },                                                                              // 27
-          this.getEmail()                                                                                    // 27
-        ),                                                                                                   // 27
-        React.createElement(                                                                                 // 28
-          'button',                                                                                          // 28
-          { className: 'logout-button', onClick: this.logout.bind(this) },                                   // 28
-          'Logout'                                                                                           // 28
-        )                                                                                                    // 28
-      );                                                                                                     // 26
-    }                                                                                                        // 30
+    AccountsUIWrapper.prototype.logout = function () {                                                       //
+        function logout() {                                                                                  //
+            Meteor.logout(function () {                                                                      // 30
+                FlowRouter.go('/');                                                                          // 31
+            });                                                                                              // 32
+        }                                                                                                    // 33
                                                                                                              //
-    return render;                                                                                           //
-  }();                                                                                                       //
+        return logout;                                                                                       //
+    }();                                                                                                     //
                                                                                                              //
-  return AccountsUIWrapper;                                                                                  //
+    /**                                                                                                      // 35
+     * Renders the component                                                                                 //
+     * @returns {JSX}                                                                                        //
+     */                                                                                                      //
+                                                                                                             //
+                                                                                                             //
+    AccountsUIWrapper.prototype.render = function () {                                                       //
+        function render() {                                                                                  //
+            // render the email and the logout button                                                        // 40
+            return React.createElement(                                                                      // 41
+                'div',                                                                                       // 41
+                null,                                                                                        // 41
+                React.createElement(                                                                         // 42
+                    'span',                                                                                  // 42
+                    { ref: 'container' },                                                                    // 42
+                    this.getEmail()                                                                          // 42
+                ),                                                                                           // 42
+                React.createElement(                                                                         // 43
+                    'button',                                                                                // 43
+                    { className: 'logout-button', onClick: this.logout.bind(this) },                         // 43
+                    'Logout'                                                                                 // 43
+                )                                                                                            // 43
+            );                                                                                               // 41
+        }                                                                                                    // 45
+                                                                                                             //
+        return render;                                                                                       //
+    }();                                                                                                     //
+                                                                                                             //
+    return AccountsUIWrapper;                                                                                //
 }(Component);                                                                                                //
                                                                                                              //
 module.export("default",exports.default=(AccountsUIWrapper));                                                //
@@ -283,107 +233,109 @@ var _classCallCheck;module.import('babel-runtime/helpers/classCallCheck',{"defau
                                                                                                              // 6
                                                                                                              // 7
                                                                                                              //
-// App component - represents the whole app                                                                  // 9
+/**                                                                                                          // 9
+ * Represents the Component pertaining t                                                                     //
+ */                                                                                                          //
                                                                                                              //
 var App = function (_Component) {                                                                            //
   _inherits(App, _Component);                                                                                //
                                                                                                              //
-  function App(props) {                                                                                      // 12
-    _classCallCheck(this, App);                                                                              // 12
+  function App(props) {                                                                                      // 14
+    _classCallCheck(this, App);                                                                              // 14
                                                                                                              //
-    var _this = _possibleConstructorReturn(this, _Component.call(this, props));                              // 12
+    var _this = _possibleConstructorReturn(this, _Component.call(this, props));                              // 14
                                                                                                              //
-    _this.state = {                                                                                          // 15
-      hideCompleted: false                                                                                   // 16
-    };                                                                                                       // 15
-    return _this;                                                                                            // 12
-  }                                                                                                          // 18
+    _this.state = {                                                                                          // 17
+      hideCompleted: false                                                                                   // 18
+    };                                                                                                       // 17
+    return _this;                                                                                            // 14
+  }                                                                                                          // 20
                                                                                                              //
   App.prototype.handleSubmit = function () {                                                                 //
     function handleSubmit(event) {                                                                           //
-      event.preventDefault();                                                                                // 21
+      event.preventDefault();                                                                                // 23
                                                                                                              //
-      // Find the text field via the React ref                                                               // 23
-      var text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();                                     // 24
+      // Find the text field via the React ref                                                               // 25
+      var text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();                                     // 26
                                                                                                              //
-      Meteor.call('tasks.insert', text);                                                                     // 26
+      Meteor.call('tasks.insert', text);                                                                     // 28
                                                                                                              //
-      // Clear form                                                                                          // 28
-      ReactDOM.findDOMNode(this.refs.textInput).value = '';                                                  // 29
-    }                                                                                                        // 30
+      // Clear form                                                                                          // 30
+      ReactDOM.findDOMNode(this.refs.textInput).value = '';                                                  // 31
+    }                                                                                                        // 32
                                                                                                              //
     return handleSubmit;                                                                                     //
   }();                                                                                                       //
                                                                                                              //
   App.prototype.toggleHideCompleted = function () {                                                          //
     function toggleHideCompleted() {                                                                         //
-      this.setState({                                                                                        // 33
-        hideCompleted: !this.state.hideCompleted                                                             // 34
-      });                                                                                                    // 33
-    }                                                                                                        // 36
+      this.setState({                                                                                        // 35
+        hideCompleted: !this.state.hideCompleted                                                             // 36
+      });                                                                                                    // 35
+    }                                                                                                        // 38
                                                                                                              //
     return toggleHideCompleted;                                                                              //
   }();                                                                                                       //
                                                                                                              //
   App.prototype.renderTasks = function () {                                                                  //
     function renderTasks() {                                                                                 //
-      var filteredTasks = this.props.tasks;                                                                  // 39
-      if (this.state.hideCompleted) {                                                                        // 40
-        filteredTasks = filteredTasks.filter(function (task) {                                               // 41
-          return !task.checked;                                                                              // 41
-        });                                                                                                  // 41
-      }                                                                                                      // 42
-      return filteredTasks.map(function (task) {                                                             // 43
-        return React.createElement(Task, { key: task._id, task: task });                                     // 43
-      });                                                                                                    // 43
-    }                                                                                                        // 46
+      var filteredTasks = this.props.tasks;                                                                  // 41
+      if (this.state.hideCompleted) {                                                                        // 42
+        filteredTasks = filteredTasks.filter(function (task) {                                               // 43
+          return !task.checked;                                                                              // 43
+        });                                                                                                  // 43
+      }                                                                                                      // 44
+      return filteredTasks.map(function (task) {                                                             // 45
+        return React.createElement(Task, { key: task._id, task: task });                                     // 45
+      });                                                                                                    // 45
+    }                                                                                                        // 48
                                                                                                              //
     return renderTasks;                                                                                      //
   }();                                                                                                       //
                                                                                                              //
   App.prototype.render = function () {                                                                       //
     function render() {                                                                                      //
-      return React.createElement(                                                                            // 49
-        'div',                                                                                               // 50
-        { className: 'container' },                                                                          // 50
-        React.createElement(                                                                                 // 51
-          'header',                                                                                          // 51
-          null,                                                                                              // 51
-          React.createElement(                                                                               // 52
-            'h1',                                                                                            // 52
-            null,                                                                                            // 52
-            'To Do List | You have ',                                                                        // 52
-            this.props.incompleteTaskCount,                                                                  // 52
-            ' to do'                                                                                         // 52
-          ),                                                                                                 // 52
+      return React.createElement(                                                                            // 51
+        'div',                                                                                               // 52
+        { className: 'container' },                                                                          // 52
+        React.createElement(                                                                                 // 53
+          'header',                                                                                          // 53
+          null,                                                                                              // 53
           React.createElement(                                                                               // 54
-            'label',                                                                                         // 54
-            { className: 'hide-completed' },                                                                 // 54
-            React.createElement('input', {                                                                   // 55
-              type: 'checkbox',                                                                              // 56
-              readOnly: true,                                                                                // 57
-              checked: this.state.hideCompleted,                                                             // 58
-              onClick: this.toggleHideCompleted.bind(this) }),                                               // 59
-            'Hide Completed Tasks'                                                                           // 54
+            'h1',                                                                                            // 54
+            null,                                                                                            // 54
+            'To Do List | You have ',                                                                        // 54
+            this.props.incompleteTaskCount,                                                                  // 54
+            ' to do'                                                                                         // 54
           ),                                                                                                 // 54
-          React.createElement(AccountsUIWrapper, null),                                                      // 63
-          this.props.currentUser ? React.createElement(                                                      // 65
-            'form',                                                                                          // 66
-            { className: 'new-task', onSubmit: this.handleSubmit.bind(this) },                               // 66
-            React.createElement('input', {                                                                   // 67
-              type: 'text',                                                                                  // 68
-              ref: 'textInput',                                                                              // 69
-              placeholder: 'Type to add new tasks'                                                           // 70
-            })                                                                                               // 67
-          ) : ''                                                                                             // 66
-        ),                                                                                                   // 51
-        React.createElement(                                                                                 // 75
-          'ul',                                                                                              // 75
-          null,                                                                                              // 75
-          this.renderTasks()                                                                                 // 76
-        )                                                                                                    // 75
-      );                                                                                                     // 50
-    }                                                                                                        // 80
+          React.createElement(                                                                               // 56
+            'label',                                                                                         // 56
+            { className: 'hide-completed' },                                                                 // 56
+            React.createElement('input', {                                                                   // 57
+              type: 'checkbox',                                                                              // 58
+              readOnly: true,                                                                                // 59
+              checked: this.state.hideCompleted,                                                             // 60
+              onClick: this.toggleHideCompleted.bind(this) }),                                               // 61
+            'Hide Completed Tasks'                                                                           // 56
+          ),                                                                                                 // 56
+          React.createElement(AccountsUIWrapper, null),                                                      // 65
+          this.props.currentUser ? React.createElement(                                                      // 67
+            'form',                                                                                          // 68
+            { className: 'new-task', onSubmit: this.handleSubmit.bind(this) },                               // 68
+            React.createElement('input', {                                                                   // 69
+              type: 'text',                                                                                  // 70
+              ref: 'textInput',                                                                              // 71
+              placeholder: 'Type to add new tasks'                                                           // 72
+            })                                                                                               // 69
+          ) : ''                                                                                             // 68
+        ),                                                                                                   // 53
+        React.createElement(                                                                                 // 77
+          'ul',                                                                                              // 77
+          null,                                                                                              // 77
+          this.renderTasks()                                                                                 // 78
+        )                                                                                                    // 77
+      );                                                                                                     // 52
+    }                                                                                                        // 82
                                                                                                              //
     return render;                                                                                           //
   }();                                                                                                       //
@@ -391,23 +343,77 @@ var App = function (_Component) {                                               
   return App;                                                                                                //
 }(Component);                                                                                                //
                                                                                                              //
-App.propTypes = {                                                                                            // 83
-  tasks: PropTypes.array.isRequired,                                                                         // 84
-  incompleteTaskCount: PropTypes.number.isRequired,                                                          // 85
-  currentUser: PropTypes.object                                                                              // 86
-};                                                                                                           // 83
+App.propTypes = {                                                                                            // 85
+  tasks: PropTypes.array.isRequired,                                                                         // 86
+  incompleteTaskCount: PropTypes.number.isRequired,                                                          // 87
+  currentUser: PropTypes.object                                                                              // 88
+};                                                                                                           // 85
                                                                                                              //
-module.export("default",exports.default=(createContainer(function () {                                       // 89
-  Meteor.subscribe('tasks');                                                                                 // 90
-  return {                                                                                                   // 91
-    tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),                                              // 92
-    incompleteTaskCount: Tasks.find({ checked: { $ne: true } }).count(),                                     // 93
-    currentUser: Meteor.user()                                                                               // 94
-  };                                                                                                         // 91
-}, App)));                                                                                                   // 96
+module.export("default",exports.default=(createContainer(function () {                                       // 91
+  Meteor.subscribe('tasks');                                                                                 // 92
+  return {                                                                                                   // 93
+    tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),                                              // 94
+    incompleteTaskCount: Tasks.find({ checked: { $ne: true } }).count(),                                     // 95
+    currentUser: Meteor.user()                                                                               // 96
+  };                                                                                                         // 93
+}, App)));                                                                                                   // 98
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}],"MainLayout.jsx":["babel-runtime/helpers/classCallCheck","babel-runtime/helpers/possibleConstructorReturn","babel-runtime/helpers/inherits","react","meteor/kadira:flow-router","./SignInButton.jsx",function(require,exports,module){
+}],"AppLayout.jsx":["babel-runtime/helpers/classCallCheck","babel-runtime/helpers/possibleConstructorReturn","babel-runtime/helpers/inherits","meteor/meteor","react-dom","react","apollo-client","meteor/apollo","react-apollo",function(require,exports,module){
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                           //
+// imports/ui/AppLayout.jsx                                                                                  //
+//                                                                                                           //
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                             //
+var _classCallCheck;module.import('babel-runtime/helpers/classCallCheck',{"default":function(v){_classCallCheck=v}});var _possibleConstructorReturn;module.import('babel-runtime/helpers/possibleConstructorReturn',{"default":function(v){_possibleConstructorReturn=v}});var _inherits;module.import('babel-runtime/helpers/inherits',{"default":function(v){_inherits=v}});var Meteor;module.import('meteor/meteor',{"Meteor":function(v){Meteor=v}});var render;module.import('react-dom',{"render":function(v){render=v}});var React,Component;module.import('react',{"default":function(v){React=v},"Component":function(v){Component=v}});var ApolloClient;module.import('apollo-client',{"default":function(v){ApolloClient=v}});var meteorClientConfig;module.import('meteor/apollo',{"meteorClientConfig":function(v){meteorClientConfig=v}});var ApolloProvider;module.import('react-apollo',{"ApolloProvider":function(v){ApolloProvider=v}});
+                                                                                                             //
+                                                                                                             //
+                                                                                                             // 1
+                                                                                                             // 2
+                                                                                                             // 3
+                                                                                                             //
+                                                                                                             // 5
+                                                                                                             // 6
+                                                                                                             //
+                                                                                                             // 8
+var client = new ApolloClient(meteorClientConfig());                                                         // 9
+                                                                                                             //
+var AppLayout = function (_Component) {                                                                      //
+    _inherits(AppLayout, _Component);                                                                        //
+                                                                                                             //
+    function AppLayout(props) {                                                                              // 14
+        _classCallCheck(this, AppLayout);                                                                    // 14
+                                                                                                             //
+        return _possibleConstructorReturn(this, _Component.call(this, props));                               // 14
+    }                                                                                                        // 16
+                                                                                                             //
+    AppLayout.prototype.render = function () {                                                               //
+        function render() {                                                                                  //
+            var content = this.props.content;                                                                // 18
+                                                                                                             //
+            return React.createElement(                                                                      // 20
+                'div',                                                                                       // 21
+                null,                                                                                        // 21
+                React.createElement(                                                                         // 22
+                    ApolloProvider,                                                                          // 22
+                    { client: client },                                                                      // 22
+                    content                                                                                  // 23
+                )                                                                                            // 22
+            );                                                                                               // 21
+        }                                                                                                    // 27
+                                                                                                             //
+        return render;                                                                                       //
+    }();                                                                                                     //
+                                                                                                             //
+    return AppLayout;                                                                                        //
+}(Component);                                                                                                //
+                                                                                                             //
+module.export("default",exports.default=(AppLayout));                                                        //
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+}],"MainLayout.jsx":["babel-runtime/helpers/classCallCheck","babel-runtime/helpers/possibleConstructorReturn","babel-runtime/helpers/inherits","react","./SignInButton.jsx",function(require,exports,module){
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                           //
@@ -415,15 +421,15 @@ module.export("default",exports.default=(createContainer(function () {          
 //                                                                                                           //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                              //
-module.export({MainLayout:function(){return MainLayout}});var _classCallCheck;module.import('babel-runtime/helpers/classCallCheck',{"default":function(v){_classCallCheck=v}});var _possibleConstructorReturn;module.import('babel-runtime/helpers/possibleConstructorReturn',{"default":function(v){_possibleConstructorReturn=v}});var _inherits;module.import('babel-runtime/helpers/inherits',{"default":function(v){_inherits=v}});var React,Component;module.import('react',{"default":function(v){React=v},"Component":function(v){Component=v}});var FlowRouter;module.import('meteor/kadira:flow-router',{"FlowRouter":function(v){FlowRouter=v}});var SignInButton;module.import('./SignInButton.jsx',{"default":function(v){SignInButton=v}});
+var _classCallCheck;module.import('babel-runtime/helpers/classCallCheck',{"default":function(v){_classCallCheck=v}});var _possibleConstructorReturn;module.import('babel-runtime/helpers/possibleConstructorReturn',{"default":function(v){_possibleConstructorReturn=v}});var _inherits;module.import('babel-runtime/helpers/inherits',{"default":function(v){_inherits=v}});var React,Component;module.import('react',{"default":function(v){React=v},"Component":function(v){Component=v}});var SignInButton;module.import('./SignInButton.jsx',{"default":function(v){SignInButton=v}});
                                                                                                              //
                                                                                                              //
                                                                                                              // 1
-                                                                                                             // 2
+                                                                                                             //
                                                                                                              // 3
                                                                                                              //
-var MainLayout = function (_Component) {                                                                     // 5
-  _inherits(MainLayout, _Component);                                                                         // 5
+var MainLayout = function (_Component) {                                                                     //
+  _inherits(MainLayout, _Component);                                                                         //
                                                                                                              //
   function MainLayout(props) {                                                                               // 6
     _classCallCheck(this, MainLayout);                                                                       // 6
@@ -435,37 +441,31 @@ var MainLayout = function (_Component) {                                        
     return _this;                                                                                            // 6
   }                                                                                                          // 10
                                                                                                              //
-  MainLayout.prototype.goToApp = function () {                                                               // 5
-    function goToApp() {                                                                                     // 5
-      FlowRouter.go('/app');                                                                                 // 13
-    }                                                                                                        // 14
+  MainLayout.prototype.render = function () {                                                                //
+    function render() {                                                                                      //
+      return React.createElement(                                                                            // 14
+        'div',                                                                                               // 15
+        { className: 'text-center' },                                                                        // 15
+        React.createElement(                                                                                 // 16
+          'h1',                                                                                              // 16
+          null,                                                                                              // 16
+          'This is the Home page'                                                                            // 16
+        ),                                                                                                   // 16
+        React.createElement('br', null),                                                                     // 18
+        React.createElement(SignInButton, null)                                                              // 19
+      );                                                                                                     // 15
+    }                                                                                                        // 23
                                                                                                              //
-    return goToApp;                                                                                          // 5
-  }();                                                                                                       // 5
+    return render;                                                                                           //
+  }();                                                                                                       //
                                                                                                              //
-  MainLayout.prototype.render = function () {                                                                // 5
-    function render() {                                                                                      // 5
-      return React.createElement(                                                                            // 16
-        'div',                                                                                               // 17
-        { className: 'text-center' },                                                                        // 17
-        React.createElement(                                                                                 // 18
-          'h1',                                                                                              // 18
-          null,                                                                                              // 18
-          'This is the Home page'                                                                            // 18
-        ),                                                                                                   // 18
-        React.createElement('br', null),                                                                     // 20
-        React.createElement(SignInButton, null)                                                              // 21
-      );                                                                                                     // 17
-    }                                                                                                        // 25
+  return MainLayout;                                                                                         //
+}(Component);                                                                                                //
                                                                                                              //
-    return render;                                                                                           // 5
-  }();                                                                                                       // 5
-                                                                                                             //
-  return MainLayout;                                                                                         // 5
-}(Component);;                                                                                               // 5
+module.export("default",exports.default=(MainLayout));                                                       //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}],"SignInButton.jsx":["babel-runtime/helpers/classCallCheck","babel-runtime/helpers/possibleConstructorReturn","babel-runtime/helpers/inherits","react","meteor/kadira:flow-router",function(require,exports,module){
+}],"SignInButton.jsx":["babel-runtime/helpers/classCallCheck","babel-runtime/helpers/possibleConstructorReturn","babel-runtime/helpers/inherits","react",function(require,exports,module){
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                           //
@@ -473,11 +473,10 @@ var MainLayout = function (_Component) {                                        
 //                                                                                                           //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                              //
-var _classCallCheck;module.import('babel-runtime/helpers/classCallCheck',{"default":function(v){_classCallCheck=v}});var _possibleConstructorReturn;module.import('babel-runtime/helpers/possibleConstructorReturn',{"default":function(v){_possibleConstructorReturn=v}});var _inherits;module.import('babel-runtime/helpers/inherits',{"default":function(v){_inherits=v}});var React,Component;module.import('react',{"default":function(v){React=v},"Component":function(v){Component=v}});var FlowRouter;module.import('meteor/kadira:flow-router',{"FlowRouter":function(v){FlowRouter=v}});
+var _classCallCheck;module.import('babel-runtime/helpers/classCallCheck',{"default":function(v){_classCallCheck=v}});var _possibleConstructorReturn;module.import('babel-runtime/helpers/possibleConstructorReturn',{"default":function(v){_possibleConstructorReturn=v}});var _inherits;module.import('babel-runtime/helpers/inherits',{"default":function(v){_inherits=v}});var React,Component;module.import('react',{"default":function(v){React=v},"Component":function(v){Component=v}});
                                                                                                              //
                                                                                                              //
                                                                                                              // 1
-                                                                                                             // 2
                                                                                                              //
 var SignInButton = function (_Component) {                                                                   //
   _inherits(SignInButton, _Component);                                                                       //
@@ -515,7 +514,7 @@ var SignInButton = function (_Component) {                                      
 module.export("default",exports.default=(SignInButton));                                                     //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}],"SignInForm.jsx":["babel-runtime/helpers/classCallCheck","babel-runtime/helpers/possibleConstructorReturn","babel-runtime/helpers/inherits","react","react-dom","./SignUpButton.jsx","meteor/kadira:flow-router",function(require,exports,module){
+}],"SignInForm.jsx":["babel-runtime/helpers/classCallCheck","babel-runtime/helpers/possibleConstructorReturn","babel-runtime/helpers/inherits","react","react-dom","./SignUpButton.jsx",function(require,exports,module){
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                           //
@@ -523,13 +522,12 @@ module.export("default",exports.default=(SignInButton));                        
 //                                                                                                           //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                              //
-var _classCallCheck;module.import('babel-runtime/helpers/classCallCheck',{"default":function(v){_classCallCheck=v}});var _possibleConstructorReturn;module.import('babel-runtime/helpers/possibleConstructorReturn',{"default":function(v){_possibleConstructorReturn=v}});var _inherits;module.import('babel-runtime/helpers/inherits',{"default":function(v){_inherits=v}});var React,Component;module.import('react',{"default":function(v){React=v},"Component":function(v){Component=v}});var ReactDOM;module.import('react-dom',{"default":function(v){ReactDOM=v}});var SignUpButton;module.import('./SignUpButton.jsx',{"default":function(v){SignUpButton=v}});var FlowRouter;module.import('meteor/kadira:flow-router',{"FlowRouter":function(v){FlowRouter=v}});
+var _classCallCheck;module.import('babel-runtime/helpers/classCallCheck',{"default":function(v){_classCallCheck=v}});var _possibleConstructorReturn;module.import('babel-runtime/helpers/possibleConstructorReturn',{"default":function(v){_possibleConstructorReturn=v}});var _inherits;module.import('babel-runtime/helpers/inherits',{"default":function(v){_inherits=v}});var React,Component;module.import('react',{"default":function(v){React=v},"Component":function(v){Component=v}});var ReactDOM;module.import('react-dom',{"default":function(v){ReactDOM=v}});var SignUpButton;module.import('./SignUpButton.jsx',{"default":function(v){SignUpButton=v}});
                                                                                                              //
                                                                                                              //
                                                                                                              // 1
                                                                                                              // 2
                                                                                                              // 3
-                                                                                                             // 4
                                                                                                              //
 var SignInForm = function (_Component) {                                                                     //
   _inherits(SignInForm, _Component);                                                                         //
@@ -557,80 +555,89 @@ var SignInForm = function (_Component) {                                        
     return handleSubmit;                                                                                     //
   }();                                                                                                       //
                                                                                                              //
+  SignInForm.prototype.onCancel = function () {                                                              //
+    function onCancel(e) {                                                                                   //
+      e.preventDefault();                                                                                    // 22
+      FlowRouter.go('home');                                                                                 // 23
+    }                                                                                                        // 24
+                                                                                                             //
+    return onCancel;                                                                                         //
+  }();                                                                                                       //
+                                                                                                             //
   SignInForm.prototype.render = function () {                                                                //
     function render() {                                                                                      //
-      return React.createElement(                                                                            // 22
-        'div',                                                                                               // 23
-        { id: 'containerDiv', className: 'container' },                                                      // 23
-        React.createElement(                                                                                 // 24
-          'div',                                                                                             // 24
-          { className: 'row' },                                                                              // 24
-          React.createElement(                                                                               // 25
-            'div',                                                                                           // 25
-            { className: 'text-center' },                                                                    // 25
-            React.createElement(                                                                             // 26
-              'h3',                                                                                          // 26
-              null,                                                                                          // 26
-              'Need to create and Account?'                                                                  // 26
-            )                                                                                                // 26
-          ),                                                                                                 // 25
+      return React.createElement(                                                                            // 27
+        'div',                                                                                               // 28
+        { id: 'containerDiv', className: 'container' },                                                      // 28
+        React.createElement(                                                                                 // 29
+          'div',                                                                                             // 29
+          { className: 'row' },                                                                              // 29
           React.createElement(                                                                               // 30
             'div',                                                                                           // 30
-            { className: 'col-md-6 col-md-offset-3' },                                                       // 30
+            { className: 'text-center' },                                                                    // 30
             React.createElement(                                                                             // 31
-              'form',                                                                                        // 31
-              { className: 'signInForm', onSubmit: this.handleSubmit.bind(this) },                           // 31
-              React.createElement(                                                                           // 32
-                'div',                                                                                       // 32
-                { className: 'form-group ' },                                                                // 32
-                React.createElement(                                                                         // 33
-                  'label',                                                                                   // 33
-                  { htmlFor: 'email' },                                                                      // 33
-                  'Email:'                                                                                   // 33
-                ),                                                                                           // 33
-                React.createElement('input', {                                                               // 34
-                  id: 'email',                                                                               // 35
-                  className: 'input-sm col-md-offset-1',                                                     // 36
-                  type: 'email',                                                                             // 37
-                  ref: 'username',                                                                           // 38
-                  placeholder: 'Email'                                                                       // 39
-                })                                                                                           // 34
-              ),                                                                                             // 32
-              React.createElement(                                                                           // 42
-                'div',                                                                                       // 42
-                { className: 'form-group' },                                                                 // 42
-                React.createElement(                                                                         // 43
-                  'label',                                                                                   // 43
-                  null,                                                                                      // 43
-                  'Password:'                                                                                // 43
-                ),                                                                                           // 43
-                React.createElement('input', {                                                               // 44
-                  className: 'input-sm',                                                                     // 45
-                  type: 'password',                                                                          // 46
-                  ref: 'password',                                                                           // 47
-                  placeholder: 'Password'                                                                    // 48
-                })                                                                                           // 44
-              ),                                                                                             // 42
-              React.createElement(                                                                           // 52
-                'div',                                                                                       // 52
-                { id: 'buttonContainer', className: 'container' },                                           // 52
-                React.createElement(                                                                         // 53
-                  'button',                                                                                  // 53
-                  { type: 'submit', ref: 'regButton', className: 'btn primary-button' },                     // 53
-                  'Login'                                                                                    // 53
-                ),                                                                                           // 53
-                React.createElement(SignUpButton, null),                                                     // 54
-                React.createElement(                                                                         // 55
-                  'a',                                                                                       // 55
-                  { href: '/', className: 'btn cancel-button bump-left' },                                   // 55
-                  'Cancel'                                                                                   // 55
-                )                                                                                            // 55
-              )                                                                                              // 52
+              'h3',                                                                                          // 31
+              null,                                                                                          // 31
+              'Need to create and Account?'                                                                  // 31
             )                                                                                                // 31
-          )                                                                                                  // 30
-        )                                                                                                    // 24
-      );                                                                                                     // 23
-    }                                                                                                        // 64
+          ),                                                                                                 // 30
+          React.createElement(                                                                               // 35
+            'div',                                                                                           // 35
+            { className: 'col-md-6 col-md-offset-3' },                                                       // 35
+            React.createElement(                                                                             // 36
+              'form',                                                                                        // 36
+              { className: 'signInForm', onSubmit: this.handleSubmit.bind(this) },                           // 36
+              React.createElement(                                                                           // 37
+                'div',                                                                                       // 37
+                { className: 'form-group ' },                                                                // 37
+                React.createElement(                                                                         // 38
+                  'label',                                                                                   // 38
+                  { htmlFor: 'email' },                                                                      // 38
+                  'Email:'                                                                                   // 38
+                ),                                                                                           // 38
+                React.createElement('input', {                                                               // 39
+                  id: 'email',                                                                               // 40
+                  className: 'input-sm col-md-offset-1',                                                     // 41
+                  type: 'email',                                                                             // 42
+                  ref: 'username',                                                                           // 43
+                  placeholder: 'Email'                                                                       // 44
+                })                                                                                           // 39
+              ),                                                                                             // 37
+              React.createElement(                                                                           // 47
+                'div',                                                                                       // 47
+                { className: 'form-group' },                                                                 // 47
+                React.createElement(                                                                         // 48
+                  'label',                                                                                   // 48
+                  null,                                                                                      // 48
+                  'Password:'                                                                                // 48
+                ),                                                                                           // 48
+                React.createElement('input', {                                                               // 49
+                  className: 'input-sm',                                                                     // 50
+                  type: 'password',                                                                          // 51
+                  ref: 'password',                                                                           // 52
+                  placeholder: 'Password'                                                                    // 53
+                })                                                                                           // 49
+              ),                                                                                             // 47
+              React.createElement(                                                                           // 57
+                'div',                                                                                       // 57
+                { id: 'buttonContainer', className: 'container' },                                           // 57
+                React.createElement(                                                                         // 58
+                  'button',                                                                                  // 58
+                  { type: 'submit', ref: 'regButton', className: 'btn primary-button' },                     // 58
+                  'Login'                                                                                    // 58
+                ),                                                                                           // 58
+                React.createElement(SignUpButton, null),                                                     // 59
+                React.createElement(                                                                         // 60
+                  'a',                                                                                       // 60
+                  { href: '/', className: 'btn cancel-button bump-left' },                                   // 60
+                  'Cancel'                                                                                   // 60
+                )                                                                                            // 60
+              )                                                                                              // 57
+            )                                                                                                // 36
+          )                                                                                                  // 35
+        )                                                                                                    // 29
+      );                                                                                                     // 28
+    }                                                                                                        // 69
                                                                                                              //
     return render;                                                                                           //
   }();                                                                                                       //
@@ -641,7 +648,7 @@ var SignInForm = function (_Component) {                                        
 module.export("default",exports.default=(SignInForm));                                                       //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}],"SignUpButton.jsx":["babel-runtime/helpers/classCallCheck","babel-runtime/helpers/possibleConstructorReturn","babel-runtime/helpers/inherits","react","meteor/kadira:flow-router",function(require,exports,module){
+}],"SignUpButton.jsx":["babel-runtime/helpers/classCallCheck","babel-runtime/helpers/possibleConstructorReturn","babel-runtime/helpers/inherits","react",function(require,exports,module){
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                           //
@@ -649,11 +656,10 @@ module.export("default",exports.default=(SignInForm));                          
 //                                                                                                           //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                              //
-var _classCallCheck;module.import('babel-runtime/helpers/classCallCheck',{"default":function(v){_classCallCheck=v}});var _possibleConstructorReturn;module.import('babel-runtime/helpers/possibleConstructorReturn',{"default":function(v){_possibleConstructorReturn=v}});var _inherits;module.import('babel-runtime/helpers/inherits',{"default":function(v){_inherits=v}});var React,Component;module.import('react',{"default":function(v){React=v},"Component":function(v){Component=v}});var FlowRouter;module.import('meteor/kadira:flow-router',{"FlowRouter":function(v){FlowRouter=v}});
+var _classCallCheck;module.import('babel-runtime/helpers/classCallCheck',{"default":function(v){_classCallCheck=v}});var _possibleConstructorReturn;module.import('babel-runtime/helpers/possibleConstructorReturn',{"default":function(v){_possibleConstructorReturn=v}});var _inherits;module.import('babel-runtime/helpers/inherits',{"default":function(v){_inherits=v}});var React,Component;module.import('react',{"default":function(v){React=v},"Component":function(v){Component=v}});
                                                                                                              //
                                                                                                              //
                                                                                                              // 1
-                                                                                                             // 2
                                                                                                              //
 var SignUpButton = function (_Component) {                                                                   //
   _inherits(SignUpButton, _Component);                                                                       //
@@ -691,7 +697,7 @@ var SignUpButton = function (_Component) {                                      
 module.export("default",exports.default=(SignUpButton));                                                     //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}],"SignUpForm.jsx":["babel-runtime/helpers/classCallCheck","babel-runtime/helpers/possibleConstructorReturn","babel-runtime/helpers/inherits","react","react-dom","meteor/kadira:flow-router","meteor/meteor","meteor/accounts-base",function(require,exports,module){
+}],"SignUpForm.jsx":["babel-runtime/helpers/classCallCheck","babel-runtime/helpers/possibleConstructorReturn","babel-runtime/helpers/inherits","react","react-dom","meteor/meteor","meteor/accounts-base",function(require,exports,module){
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                           //
@@ -699,12 +705,12 @@ module.export("default",exports.default=(SignUpButton));                        
 //                                                                                                           //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                              //
-var _classCallCheck;module.import('babel-runtime/helpers/classCallCheck',{"default":function(v){_classCallCheck=v}});var _possibleConstructorReturn;module.import('babel-runtime/helpers/possibleConstructorReturn',{"default":function(v){_possibleConstructorReturn=v}});var _inherits;module.import('babel-runtime/helpers/inherits',{"default":function(v){_inherits=v}});var React,Component;module.import('react',{"default":function(v){React=v},"Component":function(v){Component=v}});var ReactDOM;module.import('react-dom',{"default":function(v){ReactDOM=v}});var FlowRouter;module.import('meteor/kadira:flow-router',{"FlowRouter":function(v){FlowRouter=v}});var Meteor;module.import('meteor/meteor',{"Meteor":function(v){Meteor=v}});var Accounts;module.import('meteor/accounts-base',{"Accounts":function(v){Accounts=v}});
+var _classCallCheck;module.import('babel-runtime/helpers/classCallCheck',{"default":function(v){_classCallCheck=v}});var _possibleConstructorReturn;module.import('babel-runtime/helpers/possibleConstructorReturn',{"default":function(v){_possibleConstructorReturn=v}});var _inherits;module.import('babel-runtime/helpers/inherits',{"default":function(v){_inherits=v}});var React,Component;module.import('react',{"default":function(v){React=v},"Component":function(v){Component=v}});var ReactDOM;module.import('react-dom',{"default":function(v){ReactDOM=v}});var Meteor;module.import('meteor/meteor',{"Meteor":function(v){Meteor=v}});var Accounts;module.import('meteor/accounts-base',{"Accounts":function(v){Accounts=v}});
                                                                                                              //
                                                                                                              //
                                                                                                              // 1
                                                                                                              // 2
-                                                                                                             // 3
+                                                                                                             //
                                                                                                              // 4
                                                                                                              // 5
                                                                                                              //
@@ -734,8 +740,6 @@ var SignUpForm = function (_Component) {                                        
           FlowRouter.go('/app');                                                                             // 23
         }                                                                                                    // 24
       });                                                                                                    // 25
-                                                                                                             //
-      // FlowRouter.go('/app');                                                                              // 27
     }                                                                                                        // 28
                                                                                                              //
     return handleSubmit;                                                                                     //
@@ -957,8 +961,98 @@ Task.propTypes = {                                                              
 };                                                                                                           // 83
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}]}}},{"extensions":[".js",".json",".html",".css",".jsx"]});
-require("./client/template.main.js");
+}]}},"client":{"router.jsx":["react","meteor/meteor","meteor/kadira:flow-router","react-mounter","react-dom","../imports/ui/AppLayout.jsx","../imports/ui/MainLayout.jsx","../imports/ui/App.jsx","../imports/ui/SignUpForm.jsx","../imports/ui/SignInForm.jsx",function(require,exports,module){
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                           //
+// client/router.jsx                                                                                         //
+//                                                                                                           //
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                             //
+var React;module.import('react',{"default":function(v){React=v}});var Meteor;module.import('meteor/meteor',{"Meteor":function(v){Meteor=v}});var FlowRouter;module.import('meteor/kadira:flow-router',{"FlowRouter":function(v){FlowRouter=v}});var mount;module.import('react-mounter',{"mount":function(v){mount=v}});var ReactDOM;module.import('react-dom',{"default":function(v){ReactDOM=v}});var AppLayout;module.import('../imports/ui/AppLayout.jsx',{"default":function(v){AppLayout=v}});var MainLayout;module.import('../imports/ui/MainLayout.jsx',{"default":function(v){MainLayout=v}});var App;module.import('../imports/ui/App.jsx',{"default":function(v){App=v}});var SignUpForm;module.import('../imports/ui/SignUpForm.jsx',{"default":function(v){SignUpForm=v}});var SignInForm;module.import('../imports/ui/SignInForm.jsx',{"default":function(v){SignInForm=v}});
+                                                                                                             // 2
+                                                                                                             // 3
+                                                                                                             // 4
+                                                                                                             // 5
+                                                                                                             // 6
+                                                                                                             // 7
+                                                                                                             // 8
+                                                                                                             // 9
+                                                                                                             // 10
+                                                                                                             //
+/**                                                                                                          // 12
+ * The routes for corresponding react layouts.                                                               //
+ */                                                                                                          //
+FlowRouter.route('/', {                                                                                      // 15
+    name: 'home',                                                                                            // 16
+    action: function () {                                                                                    // 17
+        function action() {                                                                                  // 15
+            mount(AppLayout, { content: React.createElement(MainLayout, null) });                            // 18
+        }                                                                                                    // 19
+                                                                                                             //
+        return action;                                                                                       // 15
+    }()                                                                                                      // 15
+});                                                                                                          // 15
+                                                                                                             //
+FlowRouter.route('/signIn', {                                                                                // 22
+    name: 'signIn',                                                                                          // 23
+    action: function () {                                                                                    // 24
+        function action() {                                                                                  // 22
+            mount(AppLayout, { content: React.createElement(SignInForm, null) });                            // 25
+        }                                                                                                    // 26
+                                                                                                             //
+        return action;                                                                                       // 22
+    }()                                                                                                      // 22
+});                                                                                                          // 22
+                                                                                                             //
+FlowRouter.route('/signUp', {                                                                                // 29
+    name: 'signUp',                                                                                          // 30
+    action: function () {                                                                                    // 31
+        function action() {                                                                                  // 29
+            mount(AppLayout, { content: React.createElement(SignUpForm, null) });                            // 32
+        }                                                                                                    // 33
+                                                                                                             //
+        return action;                                                                                       // 29
+    }()                                                                                                      // 29
+});                                                                                                          // 29
+                                                                                                             //
+FlowRouter.route('/app', {                                                                                   // 36
+    name: 'app',                                                                                             // 37
+    action: function () {                                                                                    // 38
+        function action() {                                                                                  // 36
+            mount(AppLayout, { content: React.createElement(App, null) });                                   // 39
+        }                                                                                                    // 40
+                                                                                                             //
+        return action;                                                                                       // 36
+    }()                                                                                                      // 36
+});                                                                                                          // 36
+                                                                                                             //
+/**                                                                                                          // 44
+ * Once the user is logged in redirect them to the '/app' route                                              //
+ * @see: FlowFlowRouter.route('/app')                                                                        //
+ */                                                                                                          //
+Accounts.onLogin(function () {                                                                               // 48
+    FlowRouter.go('/app');                                                                                   // 49
+});                                                                                                          // 50
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+}],"main.js":["react","meteor/meteor","../imports/startup/accounts-config.js",function(require,exports,module){
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                           //
+// client/main.js                                                                                            //
+//                                                                                                           //
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                             //
+var React;module.import('react',{"default":function(v){React=v}});var Meteor;module.import('meteor/meteor',{"Meteor":function(v){Meteor=v}});module.import('../imports/startup/accounts-config.js');
+                                                                                                             // 2
+                                                                                                             //
+                                                                                                             // 5
+                                                                                                             //
+Meteor.startup(function () {});                                                                              // 7
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+}]}},{"extensions":[".js",".json",".html",".css",".jsx"]});
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                           //
 // client/compatibility/bootstrap.min.js                                                                     //
@@ -976,5 +1070,5 @@ this.activeTarget=b,this.clear();var c=this.selector+'[data-target="'+b+'"],'+th
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-require("./client/routes.jsx");
-require("./client/main.jsx");
+require("./client/router.jsx");
+require("./client/main.js");

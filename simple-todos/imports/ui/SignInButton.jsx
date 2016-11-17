@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 export default class SignInButton extends Component{
   handleClick(event){
     event.preventDefault();
-    Router.go('/signIn');
+    FlowRouter.go('/signIn');
   }
   render(){
     return(

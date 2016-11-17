@@ -20,7 +20,7 @@ export default class SignUpForm extends Component{
         console.log(err.reason);
       }
       else{
-        Router.go('/app');
+        FlowRouter.go('/app');
       }
     });
 

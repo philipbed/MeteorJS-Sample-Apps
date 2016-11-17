@@ -279,6 +279,19 @@
       "path": "packages/accounts-password.js"
     },
     {
+      "path": "packages/templating-compiler.js"
+    },
+    {
+      "path": "packages/templating-runtime.js"
+    },
+    {
+      "path": "packages/templating.js"
+    },
+    {
+      "sourceMap": "packages/apollo.js.map",
+      "path": "packages/apollo.js"
+    },
+    {
       "sourceMap": "packages/reactive-dict.js.map",
       "path": "packages/reactive-dict.js"
     },
@@ -294,15 +307,6 @@
     },
     {
       "path": "packages/launch-screen.js"
-    },
-    {
-      "path": "packages/templating-compiler.js"
-    },
-    {
-      "path": "packages/templating-runtime.js"
-    },
-    {
-      "path": "packages/templating.js"
     },
     {
       "path": "packages/autoupdate.js"

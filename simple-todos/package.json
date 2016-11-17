@@ -5,9 +5,18 @@
     "start": "meteor run"
   },
   "dependencies": {
+    "apollo-client": "^0.5.5",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "graphql": "^0.7.0",
+    "graphql-server-express": "^0.4.3",
+    "graphql-subscriptions": "^0.2.1",
+    "graphql-tools": "^0.8.1",
     "meteor-node-stubs": "~0.2.0",
     "react": "^15.3.2",
     "react-addons-pure-render-mixin": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "react-apollo": "^0.6.0",
+    "react-dom": "^15.3.2",
+    "react-mounter": "^1.2.0"
   }
 }

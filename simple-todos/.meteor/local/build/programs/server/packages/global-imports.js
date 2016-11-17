@@ -7,6 +7,7 @@ Tracker = Package.tracker.Tracker;
 Deps = Package.tracker.Deps;
 ECMAScript = Package.ecmascript.ECMAScript;
 ReactMeteorData = Package['react-meteor-data'].ReactMeteorData;
+EJSON = Package.ejson.EJSON;
 FlowRouter = Package['kadira:flow-router'].FlowRouter;
 Meteor = Package.meteor.Meteor;
 global = Package.meteor.global;

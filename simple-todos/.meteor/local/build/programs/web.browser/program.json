@@ -51,9 +51,9 @@
       "where": "client",
       "type": "js",
       "cacheable": true,
-      "url": "/packages/modules.js?hash=66dde46cc5c3fd9e349ab95ab5c8ee0881a29ac1",
-      "size": 3417597,
-      "hash": "66dde46cc5c3fd9e349ab95ab5c8ee0881a29ac1"
+      "url": "/packages/modules.js?hash=5b22d434a3658f8740c2fb2739764558a17807d5",
+      "size": 6170909,
+      "hash": "5b22d434a3658f8740c2fb2739764558a17807d5"
     },
     {
       "path": "packages/es5-shim.js",
@@ -711,6 +711,17 @@
       "hash": "b05356a2ba0795790b5aedb9d263e62d890732b7"
     },
     {
+      "path": "packages/apollo.js",
+      "where": "client",
+      "type": "js",
+      "cacheable": true,
+      "url": "/packages/apollo.js?hash=eb83f0a282f5723b091200619b553c15935bb304",
+      "sourceMap": "packages/apollo.js.map",
+      "sourceMapUrl": "/packages/eb83f0a282f5723b091200619b553c15935bb304.map",
+      "size": 11859,
+      "hash": "eb83f0a282f5723b091200619b553c15935bb304"
+    },
+    {
       "path": "packages/kadira_flow-router.js",
       "where": "client",
       "type": "js",
@@ -780,20 +791,20 @@
       "where": "client",
       "type": "js",
       "cacheable": true,
-      "url": "/packages/global-imports.js?hash=9596052109c4a0b8f376a001894b793d5d9cc4a8",
-      "size": 1266,
-      "hash": "9596052109c4a0b8f376a001894b793d5d9cc4a8"
+      "url": "/packages/global-imports.js?hash=bf22130b0ecfa495e2f1015ef675a19872845eb0",
+      "size": 1295,
+      "hash": "bf22130b0ecfa495e2f1015ef675a19872845eb0"
     },
     {
       "path": "app/app.js",
       "where": "client",
       "type": "js",
       "cacheable": true,
-      "url": "/app/app.js?hash=e710db5f38fd9186534352694491601bdd7b5399",
+      "url": "/app/app.js?hash=becab260f74ac40b055a4130cd1bb7fa18da6956",
       "sourceMap": "app/app.js.map",
-      "sourceMapUrl": "/app/e710db5f38fd9186534352694491601bdd7b5399.map",
-      "size": 151380,
-      "hash": "e710db5f38fd9186534352694491601bdd7b5399"
+      "sourceMapUrl": "/app/becab260f74ac40b055a4130cd1bb7fa18da6956.map",
+      "size": 162514,
+      "hash": "becab260f74ac40b055a4130cd1bb7fa18da6956"
     },
     {
       "path": "merged-stylesheets.css",
@@ -832,12 +843,6 @@
       "url": "/packages/meteortoys_blueprint/config/icon.png",
       "size": 3459,
       "hash": "df6d25be0df76af74b3cec5f8d80bc796ccca2ab"
-    },
-    {
-      "path": "head.html",
-      "where": "internal",
-      "type": "head",
-      "hash": "76a6cc8f9b2f5e639a56dc347ff69abe09d97001"
     }
   ]
 }

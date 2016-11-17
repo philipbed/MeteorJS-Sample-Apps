@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 export default class SignUpButton extends Component{
   handleClick(event){
     event.preventDefault();
-    Router.go('/signUp');
+    FlowRouter.go('/signUp');
   }
   render(){
     return(

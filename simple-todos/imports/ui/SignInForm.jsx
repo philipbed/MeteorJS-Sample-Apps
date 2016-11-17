@@ -18,6 +18,11 @@ export default class SignInForm extends Component{
 
   }
 
+  onCancel(e){
+    e.preventDefault();
+    FlowRouter.go('home');
+  }
+
   render(){
     return (
       <div id="containerDiv" className="container">

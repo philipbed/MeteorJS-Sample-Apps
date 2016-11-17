@@ -159,14 +159,15 @@ install("accounts-base", "meteor/accounts-base/server_main.js");
 install("sha");
 install("srp");
 install("accounts-password");
+install("templating-compiler");
+install("templating-runtime");
+install("templating");
+install("apollo", "meteor/apollo/main-server.js");
 install("reactive-dict");
 install("kadira:flow-router");
 install("livedata");
 install("hot-code-push");
 install("launch-screen");
-install("templating-compiler");
-install("templating-runtime");
-install("templating");
 install("autoupdate");
 install("reload");
 install("service-configuration");
@@ -349,7 +350,39 @@ exports.enable = function (Module) {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-}}}}}},"react":{"package.json":function(require,exports){
+}}}}}},"graphql-tools":{"package.json":function(require,exports){
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                  //
+// node_modules/graphql-tools/package.json                                                          //
+//                                                                                                  //
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                    //
+exports.name = "graphql-tools";
+exports.version = "0.8.1";
+exports.main = "dist/index.js";
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+},"dist":{"index.js":function(require,exports){
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                  //
+// node_modules/graphql-tools/dist/index.js                                                         //
+//                                                                                                  //
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                    //
+"use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(require('./schemaGenerator'));
+__export(require('./mock'));
+__export(require('./autopublish'));
+//# sourceMappingURL=index.js.map
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+}}},"react":{"package.json":function(require,exports){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                  //
@@ -400,6 +433,240 @@ exports.main = "index.js";
 //////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                     //
 module.exports = require('react/lib/ReactComponentWithPureRenderMixin');
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+}},"babel-runtime":{"regenerator":{"index.js":function(require,exports,module){
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                  //
+// node_modules/babel-runtime/regenerator/index.js                                                  //
+//                                                                                                  //
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                    //
+module.exports = require("regenerator-runtime");
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+}}},"graphql-server-express":{"package.json":function(require,exports){
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                  //
+// node_modules/graphql-server-express/package.json                                                 //
+//                                                                                                  //
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                    //
+exports.name = "graphql-server-express";
+exports.version = "0.4.3";
+exports.main = "dist/index.js";
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+},"dist":{"index.js":function(require,exports){
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                  //
+// node_modules/graphql-server-express/dist/index.js                                                //
+//                                                                                                  //
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                    //
+"use strict";
+var expressApollo_1 = require('./expressApollo');
+exports.graphqlExpress = expressApollo_1.graphqlExpress;
+exports.graphiqlExpress = expressApollo_1.graphiqlExpress;
+var connectApollo_1 = require('./connectApollo');
+exports.graphqlConnect = connectApollo_1.graphqlConnect;
+exports.graphiqlConnect = connectApollo_1.graphiqlConnect;
+//# sourceMappingURL=index.js.map
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+}}},"body-parser":{"index.js":function(require,exports,module){
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                  //
+// node_modules/body-parser/index.js                                                                //
+//                                                                                                  //
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                    //
+/*!
+ * body-parser
+ * Copyright(c) 2014-2015 Douglas Christopher Wilson
+ * MIT Licensed
+ */
+
+'use strict'
+
+/**
+ * Module dependencies.
+ * @private
+ */
+
+var deprecate = require('depd')('body-parser')
+
+/**
+ * Cache of loaded parsers.
+ * @private
+ */
+
+var parsers = Object.create(null)
+
+/**
+ * @typedef Parsers
+ * @type {function}
+ * @property {function} json
+ * @property {function} raw
+ * @property {function} text
+ * @property {function} urlencoded
+ */
+
+/**
+ * Module exports.
+ * @type {Parsers}
+ */
+
+exports = module.exports = deprecate.function(bodyParser,
+  'bodyParser: use individual json/urlencoded middlewares')
+
+/**
+ * JSON parser.
+ * @public
+ */
+
+Object.defineProperty(exports, 'json', {
+  configurable: true,
+  enumerable: true,
+  get: createParserGetter('json')
+})
+
+/**
+ * Raw parser.
+ * @public
+ */
+
+Object.defineProperty(exports, 'raw', {
+  configurable: true,
+  enumerable: true,
+  get: createParserGetter('raw')
+})
+
+/**
+ * Text parser.
+ * @public
+ */
+
+Object.defineProperty(exports, 'text', {
+  configurable: true,
+  enumerable: true,
+  get: createParserGetter('text')
+})
+
+/**
+ * URL-encoded parser.
+ * @public
+ */
+
+Object.defineProperty(exports, 'urlencoded', {
+  configurable: true,
+  enumerable: true,
+  get: createParserGetter('urlencoded')
+})
+
+/**
+ * Create a middleware to parse json and urlencoded bodies.
+ *
+ * @param {object} [options]
+ * @return {function}
+ * @deprecated
+ * @public
+ */
+
+function bodyParser (options) {
+  var opts = {}
+
+  // exclude type option
+  if (options) {
+    for (var prop in options) {
+      if (prop !== 'type') {
+        opts[prop] = options[prop]
+      }
+    }
+  }
+
+  var _urlencoded = exports.urlencoded(opts)
+  var _json = exports.json(opts)
+
+  return function bodyParser (req, res, next) {
+    _json(req, res, function (err) {
+      if (err) return next(err)
+      _urlencoded(req, res, next)
+    })
+  }
+}
+
+/**
+ * Create a getter for loading a parser.
+ * @private
+ */
+
+function createParserGetter (name) {
+  return function get () {
+    return loadParser(name)
+  }
+}
+
+/**
+ * Load a parser module.
+ * @private
+ */
+
+function loadParser (parserName) {
+  var parser = parsers[parserName]
+
+  if (parser !== undefined) {
+    return parser
+  }
+
+  // this uses a switch for static require analysis
+  switch (parserName) {
+    case 'json':
+      parser = require('./lib/types/json')
+      break
+    case 'raw':
+      parser = require('./lib/types/raw')
+      break
+    case 'text':
+      parser = require('./lib/types/text')
+      break
+    case 'urlencoded':
+      parser = require('./lib/types/urlencoded')
+      break
+  }
+
+  // store to prevent invoking require()
+  return (parsers[parserName] = parser)
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+}},"express":{"index.js":function(require,exports,module){
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                  //
+// node_modules/express/index.js                                                                    //
+//                                                                                                  //
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                    //
+/*!
+ * express
+ * Copyright(c) 2009-2013 TJ Holowaychuk
+ * Copyright(c) 2013 Roman Shtylman
+ * Copyright(c) 2014-2015 Douglas Christopher Wilson
+ * MIT Licensed
+ */
+
+'use strict';
+
+module.exports = require('./lib/express');
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }}}},{"extensions":[".js",".json"]});
